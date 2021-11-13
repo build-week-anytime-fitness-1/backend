@@ -7,15 +7,16 @@
     "migrate": "knex migrate:latest",
     "rollback": "knex migrate:rollback",
     "seed": "knex seed:run",
-    "migrateh": "heroku run knex migrate:latest -a YOUR_HEROKU_APP_NAME",
-    "rollbackh": "heroku run knex migrate:rollback -a YOUR_HEROKU_APP_NAME",
-    "databaseh": "heroku pg:psql -a YOUR_HEROKU_APP_NAME",
-    "seedh": "heroku run knex seed:run -a YOUR_HEROKU_APP_NAME",
+    "migrateh": "heroku run knex migrate:latest -a build-week-anytime-fitness-1",
+    "rollbackh": "heroku run knex migrate:rollback -a build-week-anytime-fitness-1",
+    "databaseh": "heroku pg:psql -a build-week-anytime-fitness-1",
+    "seedh": "heroku run knex seed:run -a build-week-anytime-fitness-1",
     "test": "cross-env NODE_ENV=testing jest --verbose --runInBand",
     "deploy": "git push heroku main"
   },
   "engines": {
-    "node": "16.13.0"
+    "node": "16.13.0",
+    "npm": "6.14.13"
   },
   "license": "ISC",
   "dependencies": {
