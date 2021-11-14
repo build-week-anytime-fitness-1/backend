@@ -3,6 +3,10 @@ const helmet = require('helmet')
 const cors = require('cors')
 const db = require('./data/db-config')
 
+const authRouter = require('./auth/auth-router')
+const classRouter = require('./classes/classes-router')
+const userRouter = require('./users/users-router')
+
 function getAllUsers() { return db('users') }
 
 async function insertUser(user) {
@@ -18,12 +22,18 @@ server.use(express.json())
 server.use(helmet())
 server.use(cors())
 
-server.get('/api/users', async (req, res) => {
-  res.json(await getAllUsers())
-})
+server.use('/api/auth', authRouter)
+server.use('/api/users', userRouter)
+server.use('/api/classes', classRouter)
 
-server.post('/api/users', async (req, res) => {
-  res.status(201).json(await insertUser(req.body))
+
+
+// eslint-disable-next-line
+server.use(( err, req, res, next) => {
+  res.status( err.status || 500).json({
+    message: err.message,
+    stack: err.stack
+  })
 })
 
 module.exports = server
