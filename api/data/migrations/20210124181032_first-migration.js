@@ -1,38 +1,25 @@
 exports.up = async (knex) => {
   await knex.schema
-    // .createTable('roles', (roles) => {
-    //   roles.increments('role_id');
-    //   roles.string('role_name').notNullable().unique();
-    // })
-    // .createTable('users', (users) => {
-    //   users.increments('user_id');
-    //   users.string('first_name').notNullable();
-    //   users.string('last_name').notNullable();
-    //   users.string('username', 200).notNullable().unique();
-    //   users.string('password', 200).notNullable();
-    //   users.integer('role_id')
-    //     .unsigned()
-    //     .notNullable()
-    //     .references('role_id')
-    //     .inTable('roles')
-    //     .onDelete('RESTRICT')
-    //     .onUpdate('CASCADE')
-    // })
-    .createTable("roles", tbl => {
-      tbl.increments();
-      tbl.string("name", 128).notNullable().unique();
+    .createTable('roles', (roles) => {
+      roles.increments('role_id');
+      roles.string('role_name').notNullable().unique();
     })
-    .createTable("users", tbl => {
-      tbl.increments();
-      tbl.string("username", 128).notNullable().unique();
-      tbl.string("password", 256).notNullable();
-      tbl.integer("role")
+    .createTable('users', (users) => {
+      users.increments('user_id');
+      users.string('first_name').notNullable();
+      users.string('last_name').notNullable();
+      users.string('username', 200).notNullable().unique();
+      users.string('password', 200).notNullable();
+      users.integer('role_id')
         .unsigned()
-        .references("roles.id")
-        .onDelete("RESTRICT")
-        .onUpdate("CASCADE")
-        .defaultTo(2);
-    });
+        .notNullable()
+        .references('role_id')
+        .inTable('roles')
+        .onDelete('RESTRICT')
+        .onUpdate('CASCADE')
+        .defaultTo(2)
+    })
+    
 };
       .createTable('classes', (classes) => {
       classes.increments('class_id');
