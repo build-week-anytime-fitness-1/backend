@@ -28,9 +28,9 @@ async function insertUser(user) {
   return newUserObject // { user_id: 7, username: 'foo', password: 'xxxxxxx' }
 }
 
-server.get('/', (req, res) => {
-  res.json({ message: 'Api is working add a route to see more' });
-});
+// server.get('/', (req, res) => {
+//   res.json({ message: 'Api is working add a route to see more' });
+// });
 
 
 
