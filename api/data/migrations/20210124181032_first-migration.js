@@ -10,7 +10,8 @@ exports.up = async (knex) => {
       users.string('last_name').notNullable();
       users.string('username', 200).notNullable().unique();
       users.string('password', 200).notNullable();
-      users.integer('role_id')
+      users
+        .integer('role_id')
         .unsigned()
         .notNullable()
         .references('role_id')
@@ -19,7 +20,6 @@ exports.up = async (knex) => {
         .onUpdate('CASCADE')
         .defaultTo(2)
     })
-    
 };
       .createTable('classes', (classes) => {
       classes.increments('class_id');

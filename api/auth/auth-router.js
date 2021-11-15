@@ -4,6 +4,8 @@ const { BCRYPT_ROUNDS } = require('../secrets/index')
 const bcrypt = require('bcryptjs')
 const {checkUserNameAvailable, validateUser } = require('./auth-middleware')
 
+
+
 router.post('/register', validateUser, checkUserNameAvailable, async (req, res, next) => {
     try{
         const user = req.body

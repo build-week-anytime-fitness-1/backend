@@ -14,8 +14,13 @@ async function add(user) {
   return newUser;
 }
 
+async function getRoles(){
+return db('roles')
+}
+
 module.exports = {
   getById,
   getBy,
   add,
+  getRoles
 };
