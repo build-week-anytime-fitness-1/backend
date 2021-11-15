@@ -12,3 +12,4 @@ module.exports = function buildToken(user){
     }
     return jwt.sign(payload, JWT_SECRET, options)
 }
+
