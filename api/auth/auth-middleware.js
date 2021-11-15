@@ -4,7 +4,7 @@ const Users = require('../users/users-model')
 const checkUserNameAvailable = async (req, res , next) => {
     try{
         const { username } = req.body
-        const [user] = await Users.findBy({ username })
+        const [user] = await Users.getBy({ username })
         if(user) {
             next({ status: 403, message: 'Username is unavailable'})
         }else{
