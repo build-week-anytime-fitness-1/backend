@@ -16,7 +16,7 @@ exports.up = async (knex) => {
         .inTable('roles')
         .onDelete('RESTRICT')
         .onUpdate('CASCADE')
-        .defaultTo(2);
+        
     })
       .createTable('classes', (classes) => {
       classes.increments('class_id');
