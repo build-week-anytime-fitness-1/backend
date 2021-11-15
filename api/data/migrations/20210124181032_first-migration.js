@@ -11,7 +11,7 @@ exports.up = async (knex) => {
       users.string('username', 200).notNullable().unique();
       users.string('password', 200).notNullable();
       users
-        .integer('role_id')
+        .integer('role')
         .unsigned()
         .notNullable()
         .references('role_id')

@@ -9,7 +9,7 @@ async function getBy(filter) {
 }
 
 async function add(user) {
-  const newUser = await db('users').insert(user, ['user_id','username', 'password', 'role_id']);
+  const newUser = await db('users').insert(user, ['user_id','username', 'password', 'role']);
    return newUser
 }
 
