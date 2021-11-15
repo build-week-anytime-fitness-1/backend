@@ -20,7 +20,7 @@ exports.up = async (knex) => {
         .onUpdate('CASCADE')
         .defaultTo(2)
     })
-};
+
       .createTable('classes', (classes) => {
       classes.increments('class_id');
       classes.string('class_name', 200).notNullable();
