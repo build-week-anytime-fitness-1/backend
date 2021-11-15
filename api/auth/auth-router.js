@@ -19,7 +19,7 @@ router.post('/register', validateUser, checkUserNameAvailable, async (req, res, 
     }
 })
 
-router.post('/login', validateCredentials, checkUsernameExists, async (req, res, next)=>{
+router.post('/login', validateCredentials, async (req, res, next)=>{
     try{
         const user = req.user;
         if (bcrypt.compareSync(req.body.password, user.password)){
