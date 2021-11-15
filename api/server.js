@@ -3,9 +3,16 @@ const helmet = require('helmet')
 const cors = require('cors')
 const db = require('./data/db-config')
 
+const server = express()
+server.use(express.json())
+server.use(helmet())
+server.use(cors())
+
+
 const authRouter = require('./auth/auth-router')
 const classRouter = require('./classes/classes-router')
 const userRouter = require('./users/users-router')
+
 
 function getAllUsers() { return db('users') }
 
@@ -26,10 +33,7 @@ server.get('/', (req, res) => {
   console.log('api is working');
 });
 
-const server = express()
-server.use(express.json())
-server.use(helmet())
-server.use(cors())
+
 
 server.use('/api/auth', authRouter)
 server.use('/api/users', userRouter)
