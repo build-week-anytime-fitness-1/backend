@@ -18,24 +18,7 @@ exports.up = async (knex) => {
         .onUpdate('CASCADE')
         .defaultTo(2);
     })
-    // .createTable("users", (users) => {
-    //   users.increments("user_id");
-    //   users.string("username", 200).notNullable().unique();
-    //   users.string("password", 200).notNullable();
-    //   users.string("email", 320).notNullable().unique();
-    //   users.string("bio", 1000);
-    //   users.string("certifications", 1000);
-    //   users.integer("remaining_classes", 128).notNullable();
-    //   users
-    //     .integer("role_id", 200)
-    //     .notNullable()
-    //     .unsigned()
-    //     .references("role_id")
-    //     .inTable("roles")
-    //     .onDelete("RESTRICT")
-    //     .onUpdate("RESTRICT");
-    // })
-    .createTable('classes', (classes) => {
+      .createTable('classes', (classes) => {
       classes.increments('class_id');
       classes.string('class_name', 200).notNullable();
       classes.string('type', 200).notNullable();
