@@ -9,9 +9,8 @@ async function getBy(filter) {
 }
 
 async function add(user) {
-  const [user_id] = await db('users').insert(user);
-  const newUser = await db('users').where({ user_id }).first();
-  return newUser;
+  const newUser = await db('users').insert(user, ['user_id','username', 'password', 'role_id']);
+   return newUser
 }
 
 async function getRoles(){
