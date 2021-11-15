@@ -30,7 +30,6 @@ async function insertUser(user) {
 
 server.get('/', (req, res) => {
   res.json({ message: 'Api is working add a route to see more' });
-  console.log('api is working');
 });
 
 
