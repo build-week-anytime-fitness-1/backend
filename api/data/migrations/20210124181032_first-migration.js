@@ -10,8 +10,9 @@ exports.up = async (knex) => {
       users.string('last_name').notNullable();
       users.string('username', 200).notNullable().unique();
       users.string('password', 200).notNullable();
-      users.integer('role')
+      users.integer('role_id')
         .unsigned()
+        .notNullable()
         .references('role_id')
         .inTable('roles')
         .onDelete('RESTRICT')
