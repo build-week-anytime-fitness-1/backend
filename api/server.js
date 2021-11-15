@@ -43,7 +43,7 @@ server.use('/api/classes', classRouter)
 // eslint-disable-next-line
 server.use(( err, req, res, next) => {
   res.status( err.status || 500).json({
-    message: err.message,
+    message: err.message || 'Internal server error',
     stack: err.stack
   })
 })

@@ -8,6 +8,7 @@ exports.up = async (knex) => {
       users.increments('user_id');
       users.string('first_name').notNullable();
       users.string('last_name').notNullable();
+      users.string('email').notNullable().unique()
       users.string('username', 200).notNullable().unique();
       users.string('password', 200).notNullable();
       users
@@ -20,7 +21,6 @@ exports.up = async (knex) => {
         .onUpdate('CASCADE')
         .defaultTo(2)
     })
-
       .createTable('classes', (classes) => {
       classes.increments('class_id');
       classes.string('class_name', 200).notNullable();
@@ -48,7 +48,7 @@ exports.up = async (knex) => {
     .createTable('registration', (registration) => {
       registration.increments('registration_id');
       registration
-        .integer('user_id')
+        .integer('user_id') 
         .notNullable()
         .unsigned()
         .references('user_id')
