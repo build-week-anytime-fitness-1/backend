@@ -1,7 +1,7 @@
 const Classes = require('./classes-model')
 
 function validateClass(req, res, next) {
-    const { class_name, type, instructor_id, time, date, duration, intensity, location, max_class_size } = req.bdy
+    const { class_name, type, instructor_id, time, date, duration, intensity, location, max_class_size } = req.body
     if(!class_name || !type || !instructor_id || !time || !date || !duration || !intensity || !location || !max_class_size){
         next({ status: 400, message: 'Missing required fields'})
     }else{
