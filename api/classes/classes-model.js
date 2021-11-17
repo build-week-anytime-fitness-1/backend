@@ -25,7 +25,7 @@ async function signupClass(class_id, user_id){
   .insert({ class_id, user_id })
   .returning('registration_id')
 
-  const registeredUsers = await db('registrations')
+  const registeredUsers = await db('registration')
     .where({ class_id })
     .count()
     .first()
