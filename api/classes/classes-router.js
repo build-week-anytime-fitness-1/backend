@@ -33,8 +33,8 @@ router.post('/', validateClass, async (req, res, next) => {
 router.put('/:id', async (req, res, next) => {
     try{
         const changes = req.body
-  const { class_id } = req.params
-        const updatedClass = await Classes.updateClass(class_id, changes)
+  
+        const updatedClass = await Classes.updateClass(req.params.id, changes)
         res.status(200).json(updatedClass)
     }catch(err){
         next(err)
