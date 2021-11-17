@@ -17,7 +17,6 @@ async function add(user) {
    return newUser
 }
 
-
 async function getRoles(){
 return db('roles')
 }

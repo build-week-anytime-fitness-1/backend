@@ -20,6 +20,24 @@ function updateClass(class_id, changes){
     return db('classes').where({ class_id }).update(changes)
 }
 
+async function signupClass(class_id, user_id){
+ await db('registration')
+  .insert({ class_id, user_id })
+  .returning('registration_id')
+
+  const registeredUsers = await db('registrations')
+    .where({ class_id })
+    .count()
+    .first()
+  await db('classes').where({ class_id }).update({
+     registered_clients: registeredUsers.count
+  })
+  return db('classes')
+    .where({ class_id })
+    .select('class_name', 'registered_clients')
+    .first()
+}
+
 function deleteClass(class_id){
     return db('classes').where({ class_id }).del()
 }
@@ -30,5 +48,6 @@ module.exports = {
     getClassBy,
     addClass,
     updateClass,
+    signupClass,
     deleteClass
 }

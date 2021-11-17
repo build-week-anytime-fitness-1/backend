@@ -2,6 +2,8 @@ const router = require('express').Router();
 const Classes = require('./classes-model');
 const { validateClass } = require('./classes-middleware');
 const { restricted } = require('../auth/auth-middleware');
+const { JWT_SECRET } = require('../secrets');
+const jwt = require('jsonwebtoken')
 
 router.get('/', async (req, res, next) => {
   try {
@@ -36,6 +38,19 @@ router.put('/:id', async (req, res, next) => {
   
         const updatedClass = await Classes.updateClass(req.params.id, changes)
         res.status(200).json(updatedClass)
+    }catch(err){
+        next(err)
+    }
+})
+
+router.post('/:id/user-registration', async (req, res, next) => {
+    try{
+        const token = req.headers.authorization
+    jwt.verify(token, JWT_SECRET, (err, decoded) => {
+        const user_id = decoded.subject;
+        const registration = Classes.signupClass(parseInt(req.params.id, 10), user_id)
+        res.status(201).json(registration)
+    })
     }catch(err){
         next(err)
     }
