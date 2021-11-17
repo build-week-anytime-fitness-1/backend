@@ -45,12 +45,8 @@ router.put('/:id', async (req, res, next) => {
 
 router.post('/:id/user-registration', async (req, res, next) => {
     try{
-        const token = req.headers.authorization
-    jwt.verify(token, JWT_SECRET, (err, decoded) => {
-        const user_id = decoded.subject;
-        const registration = Classes.signupClass(parseInt(req.params.id, 10), user_id)
+        const registration = await Classes.signupClass(req.body.class_id, req.body.user_id)
         res.status(201).json(registration)
-    })
     }catch(err){
         next(err)
     }
