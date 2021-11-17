@@ -43,7 +43,6 @@ exports.up = async (knex) => {
         .integer('registered_clients')
         .notNullable()
         .unsigned()
-        .defaultTo(0);
     })
     .createTable('registration', (registration) => {
       registration.increments('registration_id');

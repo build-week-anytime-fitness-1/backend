@@ -32,7 +32,9 @@ router.post('/', validateClass, async (req, res, next) => {
 
 router.put('/:id', async (req, res, next) => {
     try{
-        const updatedClass = await Classes.updateClass(req.params.class_id, req.body.changes)
+        const changes = req.body
+  const { class_id } = req.params
+        const updatedClass = await Classes.updateClass(class_id, changes)
         res.status(200).json(updatedClass)
     }catch(err){
         next(err)
